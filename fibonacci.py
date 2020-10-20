@@ -4,21 +4,20 @@ from math import sqrt
 
 app = Flask(__name__)
 
-nmax = 100
+def fibonacci(n):
+    a = 0
+    b = 1
+    if n <= 0:
+        print("Incorrect input")
+    elif n == 1:
+        return b
+    else:
+        for i in range(2,n):
+            c = a + b
+            a = b
+            b = c
+        return b
 
-    n1 = 0
-    n2 = 1
-    cont = 0
-    fib = 0
-
-    fib = ("1000 primeiros numeros Fibonacci: <br> <br>")
-
-    while cont < nmax:
-        fib = n1 + n2
-        n1 = n2
-        n2 = fib
-        cont = cont + 1
-    return fib
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
