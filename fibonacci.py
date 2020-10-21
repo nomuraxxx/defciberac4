@@ -4,20 +4,22 @@ from math import sqrt
 
 app = Flask(__name__)
 
-def fibonacci(n):
-    a = 0
-    b = 1
-    if n <= 0:
-        print("Incorrect input")
-    elif n == 1:
-        return b
-    else:
-        for i in range(2,n):
-            c = a + b
-            a = b
-            b = c
-        return b
+@app.route('/')
+def fibo_code():
+   proximo = 1
+   anterior = 0
+   limite = 10
+   found = 0
+   resposta = "0,"
+   while (found < limite):
+       tmp = proximo
+       proximo = proximo + anterior
+       anterior = tmp
+       found=found+1
+       resposta= resposta + str(proximo) + ","
 
+
+   return resposta
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
